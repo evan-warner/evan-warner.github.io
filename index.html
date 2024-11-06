@@ -1,85 +1,255 @@
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evan Warner &#124; Software Developer</title>
+    <title>Evan Warner | Software Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --background: #212121;
+            --foreground: #EEFFFF;
+            --github: #66D9EF;
+            --linkedin: #FD971F;
+            --email: #A6E22E;
+            --resume: #F92672;
+            --accent: #8be9fd;
+        }
 
-    <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="https://www.evan-warner.com/favicon.ico" />
-    <link rel="stylesheet" href="assets/normalize.css">
-    <link rel="stylesheet" href="assets/main.css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <script 
-      defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" 
-      integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" 
-      crossorigin="anonymous">
-    </script>
+        body {
+            font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+            color: var(--foreground);
+            background-color: var(--background);
+            min-height: 100vh;
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
-    <link rel="canonical" href="https://www.evan-warner.com/">
-    <meta name="author" content="Evan Warner">
-    <meta name="description" content="Software Developer" />
+        .container {
+            min-height: 100vh;
+            padding: min(4vw, 2rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Software Developer" />
-    <meta property="og:url" content="https://www.evan-warner.com/" />
-    <meta property="og:description" content="" />
-    <meta property="og:site_name" content="Software Developer">
+        .profile {
+            text-align: center;
+            margin-bottom: min(3vh, 1.5rem);
+        }
 
+        .profile-img {
+            width: min(15vh, 120px);
+            height: min(15vh, 120px);
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            margin-bottom: min(1.5vh, 0.75rem);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            object-fit: cover;
+            cursor: pointer;
+        }
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113705979-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        .profile-img:hover {
+            transform: scale(1.05);
+            border-color: var(--github);
+        }
 
-      gtag('config', 'UA-113705979-2');
-    </script>
-    </head>
-    <body>
-      <div class="wrapper">
-        <header>
-          <div class="author-container">
-            <h1>Evan Warner</h1>
-          </div>
-          <div class="tagline-container">
-            <p>Software Developer</p>
-            <p style="color:#75715E">I am currently a software engineer in Indianapolis, Indiana. My professional interests primarily include backend website development, data science and geospatial technology. I most enjoy working with all things Python and JavaScript.</p>
-          </div>
-        </header>
-        <main>
-          <div class="content">
-            <ul class="fa-ul main-list">
-              <div style="width: 50%; float:left">
-                <li class="main-list-item">
-                  <a href="https://github.com/evan-warner" target="_blank">
-                    <i class="fab fa-github fa-lg main-list-item-icon fa-8x" style="color:#66D9EF"></i>
-                  </a>
-                </li>
-                <li class="main-list-item">
-                  <a href="https://www.linkedin.com/in/evan-warner-indiana/" target="_blank">
-                    <i class="fab fa-linkedin-in fa-lg main-list-item-icon fa-8x" style="color:#FD971F"></i>
-                  </a>
-                </li>
-              </div>
+        .name {
+            font-size: min(4vw, 2rem);
+            margin: min(0.8vh, 0.4rem) 0;
+            color: var(--accent);
+        }
 
-              <div style="width: 50%; float:right">
-                <li class="main-list-item">
-                  <a href="mailto:evan.t.warner@gmail.com" target="_blank">
-                    <i class="far fa-envelope fa-lg main-list-item-icon fa-8x" style="color:#A6E22E"></i>
-                  </a>
-                </li>
-                <li class="main-list-item">
-                  <a href="docs/Evan Warner Resume.pdf" target="_blank">
-                    <i class="far fa-file-alt fa-lg main-list-item-icon fa-8x" style="color:#F92672"></i>
-                  </a>
-                </li>
-              </li>
+        .title {
+            font-size: min(2.5vw, 1rem);
+            color: var(--linkedin);
+            margin-bottom: min(1.5vh, 0.75rem);
+        }
+
+        .objective {
+            max-width: 700px;
+            margin: 0 auto min(2vh, 1rem) auto;
+            padding: min(2.5vw, 1.25rem);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: min(3vw, 1.5rem);
+            max-width: min(85vw, 700px);
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: min(1.5vh, 0.75rem);
+            text-decoration: none;
+            color: var(--foreground);
+            transition: transform 0.3s ease;
+        }
+
+        .link:hover {
+            transform: translateY(-8px);
+        }
+
+        .link i {
+            font-size: min(7vw, 5rem) !important;
+        }
+
+        .link-label {
+            font-size: min(2vw, 1rem);
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+            }
+
+            .container {
+                justify-content: flex-start;
+                padding-top: 1.5rem;
+            }
+
+            .objective {
+                font-size: 0.95rem;
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                min-height: auto;
+                max-height: none;
+            }
+
+            .name {
+                font-size: 1.75rem;
+            }
+
+            .title {
+                font-size: 1rem;
+            }
+
+            .link i {
+                font-size: 3rem !important;
+            }
+
+            .link-label {
+                font-size: 0.9rem;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-height: 600px) {
+            body {
+                overflow-y: auto;
+            }
+
+            .container {
+                justify-content: flex-start;
+            }
+
+            .profile-img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .objective {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <img src="docs/evan-warner-headshot.jpg" alt="Evan Warner" class="profile-img" onclick="celebrateClick()">
+            <h1 class="name">Evan Warner</h1>
+            <div class="title">Senior Software Engineer</div>
+            <div class="objective">
+              I am currently a senior software engineer with professional interests primarily around full-stack website development, database development, and geospatial technology. I most enjoy working with all things Python and JavaScript. I feel strongly about maintaining a lifelong commitment to learning, specifically exploring new and challenging problems.
             </div>
-          </ul>
         </div>
-      </main>
+
+        <div class="grid">
+            <div class="grid-item">
+                <a href="https://github.com/evan-warner" class="link">
+                    <i class="fab fa-github" style="color: var(--github)"></i>
+                    <span class="link-label" style="color: var(--github)">GitHub</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="https://www.linkedin.com/in/evan-warner-indiana/" class="link">
+                    <i class="fab fa-linkedin-in" style="color: var(--linkedin)"></i>
+                    <span class="link-label" style="color: var(--linkedin)">LinkedIn</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="mailto:evan.t.warner@gmail.com" class="link">
+                    <i class="fas fa-envelope" style="color: var(--email)"></i>
+                    <span class="link-label" style="color: var(--email)">Email</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="docs/evan-warner-resume.pdf" class="link">
+                    <i class="fas fa-file-alt" style="color: var(--resume)"></i>
+                    <span class="link-label" style="color: var(--resume)">Resume</span>
+                </a>
+            </div>
+        </div>
     </div>
-  </body>
+
+    <script>
+        function celebrateClick() {
+            const end = Date.now() + 10;
+            const colors = ['#66D9EF', '#FD971F', '#A6E22E', '#F92672', '#8be9fd'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
 </html>
